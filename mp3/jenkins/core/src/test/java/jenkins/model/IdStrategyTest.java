@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import jenkins.model.IdStrategy.CaseInsensitive;
-import jenkins.model.IdStrategy.CaseSensitive;
+import jenkins.model.IdStrategy.CaseSensitive; 
 
 public class IdStrategyTest {
 
