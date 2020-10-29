@@ -224,8 +224,7 @@ public abstract class IdStrategy extends AbstractDescribableImpl<IdStrategy> imp
             }
         }
 
-        @Override
-        public String idFromFilename(@Nonnull String filename) {
+        public static String idFromFilename(@Nonnull String filename) {
             if (filename.matches("[a-z0-9_. -]+")) {
                 return filename;
             } else {
