@@ -1,0 +1,30 @@
+ANSWERS TO MP3
+
+1. The lines 558-568 are found in the getAvailables()
+method, and are repeated verbatum in the method 
+getUpdates(). This type of code smell is called duplicated
+code, because it uses duplicate expressions in the same
+class. To refactor this piece of code, we can use the
+inline method, which involves moving the method's body
+into the body of its callers, and then removing it.
+
+3. The updateAndTrim method shouldn't necessarily be in
+the Nodes class, because it is a general statement 
+involving jenkins, and doesn't include any 
+variable/method specific to the Nodes class. This code
+smell is called feature envy, because the code "wishes"
+it were in a different class. The refactoring method
+best suited for this problem would be move, to place
+updateAndTrim in another class.
+
+4. To eliminate this repeated code, it should be placed
+within a for loop. The variable i will be incremented
+after each cycle, which will allow the method to be 
+repeated without causing a code smell.
+
+6. The repeated code I decided to refactor is in the file
+HudsonTestCase.java. In the configureDefaultMaven method, 
+there was duplicate code to create a Maven installation 
+instance. To refactor this piece of code, I used the 
+Extract Method functionality in Eclipse, and moved these
+lines to a new private method.
