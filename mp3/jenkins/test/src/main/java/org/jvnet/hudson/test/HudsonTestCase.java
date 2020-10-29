@@ -595,9 +595,7 @@ public abstract class HudsonTestCase extends TestCase implements RootAction {
         File buildDirectory = new File(System.getProperty("buildDirectory", "target"));
         File mvnHome = new File(buildDirectory, mavenVersion);
         if (mvnHome.exists()) {
-            MavenInstallation mavenInstallation = new MavenInstallation("default", mvnHome.getAbsolutePath(), NO_PROPERTIES);
-            jenkins.getDescriptorByType(Maven.DescriptorImpl.class).setInstallations(mavenInstallation);
-            return mavenInstallation;
+            return getMavenInstall(mvnHome);
         }
         
         // Does maven.home point to a Maven installation which satisfies mavenReqVersion?
@@ -622,11 +620,14 @@ public abstract class HudsonTestCase extends TestCase implements RootAction {
             PosixAPI.jnr().chmod(new File(mvnHome, "bin/mvn").getPath(), 0755);
         }
 
-        MavenInstallation mavenInstallation = new MavenInstallation("default",
-                mvnHome.getAbsolutePath(), NO_PROPERTIES);
+        return getMavenInstall(mvnHome);
+    }
+
+	private MavenInstallation getMavenInstall(File mvnHome) {
+		MavenInstallation mavenInstallation = new MavenInstallation("default", mvnHome.getAbsolutePath(), NO_PROPERTIES);
 		jenkins.getDescriptorByType(Maven.DescriptorImpl.class).setInstallations(mavenInstallation);
 		return mavenInstallation;
-    }
+	}
 
     /**
      * Extracts Ant and configures it.
